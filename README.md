@@ -1,4 +1,4 @@
-#Simple Game
+##Simple Game
 
 Live: http://luk-star.pl/simplegame/
 
