@@ -1,0 +1,19 @@
+<div>
+  <div [ngClass]="'row-table'" *ngFor="let y of tableHeight">
+    <div [ngClass]="'field-table'" *ngFor="let x of tableWidth" id="{{y}}{{x}}" (click)="clickField($event)">0</div>
+  </div>
+</div>
+<hr />
+<div class="score">Player score: <strong>{{ gameService.getPlayerScore() }}</strong> | <strong>{{ gameService.getComputerScore() }}</strong> Computer score</div>
+
+<div id="result" class="modal-window">
+  <div class="modal-window-content">
+    <div class="modal-window-header">
+      <div class="modal-window-header-title" [innerHTML]="gameService.getModalWindowTitle()"></div>
+      <div (click)="gameService.closeModal('result')" class="modal-window-close">&times;</div>
+    </div>
+    <div class="modal-window-text" [innerHTML]="gameService.getModalWindowText()">
+    </div>
+  </div>
+</div>
+
