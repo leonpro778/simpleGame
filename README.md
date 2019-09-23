@@ -1,6 +1,14 @@
-##Simple Game
+#9x9 Simple Game
 
 Live: http://luk-star.pl/simplegame/
+
+**How to play?**  
+Collect as many points as possible. Remember that the next move can only be selected from the column or line where the last selection was made.
+The game ends when there are no more possible moves.
+
+### Change Log  
+Version: 1.0.0 (19.09.2019)  
+- first release
 
 ## SgCli
 

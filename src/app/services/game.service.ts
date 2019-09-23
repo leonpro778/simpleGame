@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TableService } from './table.service';
 import {AiService} from './ai.service';
 import {version} from '../config/config';
+import {config} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +56,11 @@ export class GameService {
   openAbout() {
     this.modalWindowTitle = 'About Simple Game';
     this.modalWindowText = 'Version ' + version + '<br />' +
-      'Link on GitHub: <a href="https://github.com/leonpro778/simpleGame">https://github.com/leonpro778/simpleGame</a>';
+      'Link on GitHub: <a href="https://github.com/leonpro778/simpleGame">https://github.com/leonpro778/simpleGame</a>' +
+      '<br /><br />' +
+      '<strong>How to play?</strong><br />' +
+      'Collect as many points as possible. Remember that the next move can only be selected from the column or line where the last' +
+      'selection was made. The game ends when there are no more possible moves.';
     this.openModal('result');
   }
 
