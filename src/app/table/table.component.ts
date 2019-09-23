@@ -44,8 +44,17 @@ export class TableComponent {
           computerPoints = this.aiService.computerMove(idElement, this.tableService);
           if (computerPoints > 0) {
             this.gameService.addComputerPoints(computerPoints);
-            this.tableService.showAvailableMoves(this.aiService.getLastComputerMove());
-            this.tableService.blockField(this.aiService.getLastComputerMove());
+
+            if (this.gameService.isMovePossible(this.aiService.getLastComputerMove(), this.tableService)) {
+              this.tableService.showAvailableMoves(this.aiService.getLastComputerMove());
+              this.tableService.blockField(this.aiService.getLastComputerMove());
+            } else {
+              /*
+                Game over. Last move was made by Computer
+              */
+              console.log('Game Over! Last move was made by Computer!');
+              this.gameService.endGame();
+            }
           } else {
             /*
               Game over. Last move was made by Player
