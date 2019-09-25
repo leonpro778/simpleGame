@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TableService } from './table.service';
 import {AiService} from './ai.service';
 import {version} from '../config/config';
-import {config} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,8 @@ export class GameService {
   private computerScore: number;
   private modalWindowText: string;
   private modalWindowTitle: string;
+  myGameStatus$: Observable<any>;
+  private myGameStatusSubject = new Subject<any>();
 
   constructor(
     private tableService: TableService,
@@ -22,6 +24,7 @@ export class GameService {
     this.computerScore = 0;
     this.modalWindowText = 'Sample text';
     this.modalWindowTitle = 'Modal window';
+    this.myGameStatus$ = this.myGameStatusSubject.asObservable();
   }
 
   getGameStatus() {
@@ -66,6 +69,7 @@ export class GameService {
 
   abortGame() {
     this.activeGame = false;
+    this.myGameStatusSubject.next();
     this.playerScore = 0;
     this.computerScore = 0;
     this.tableService.cleanTable();
@@ -110,6 +114,7 @@ export class GameService {
 
   endGame() {
     this.activeGame = false;
+    this.myGameStatusSubject.next();
     this.setGameResult();
     this.openModal('result');
   }

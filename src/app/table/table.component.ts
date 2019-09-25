@@ -66,7 +66,7 @@ export class TableComponent {
           /*
             Wrong click, somebody has change field class manually. No action needed
            */
-          console.log('Wrong click!');
+          this.tableService.showAvailableMoves(this.aiService.getLastComputerMove());
         }
       } else {
         /*

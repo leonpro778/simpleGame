@@ -13,7 +13,15 @@ export class NavComponent implements OnInit {
 
   constructor(
     private gameService: GameService
-  ) {}
+  ) {
+    this.gameService.myGameStatus$.subscribe(() => {
+      if (this.gameService.getGameStatus() === false) {
+        this.gameButton = 'Start Game';
+      } else {
+        this.gameButton = 'Abort Game';
+      }
+    });
+  }
 
   ngOnInit() {
     if (this.gameService.getGameStatus()) { this.gameButton = 'Abort Game'; }
